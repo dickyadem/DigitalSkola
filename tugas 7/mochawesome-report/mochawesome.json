@@ -1,0 +1,331 @@
+{
+  "stats": {
+    "suites": 4,
+    "tests": 8,
+    "passes": 8,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-08-14T02:42:19.496Z",
+    "end": "2026-08-14T02:42:24.216Z",
+    "duration": 4720,
+    "testsRegistered": 8,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "1d90c63d-18ea-4763-af11-7735e1f866e6",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "80263d6f-eeda-4f73-9e6f-da982049db05",
+          "title": "Add User API Automation",
+          "fullFile": "C:\\Users\\ASUS\\Documents\\QA\\DigitalSkola\\tugas 7\\test\\addUser.test.js",
+          "file": "\\test\\addUser.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Add User API Automation\"",
+              "fullTitle": "Add User API Automation \"before all\" hook in \"Add User API Automation\"",
+              "timedOut": false,
+              "duration": 368,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await fetch(`${BASE_URL}/login`, {\n  method: \"POST\",\n  headers: {\n    \"Content-Type\": \"application/json\",\n  },\n  body: JSON.stringify({\n    username: \"admin\",\n    password: \"admin\",\n  }),\n});\nconst data = await response.json();\ntoken = data.token;",
+              "err": {},
+              "uuid": "bb656ac3-01c4-4bb7-ba3e-6822993ac1b3",
+              "parentUUID": "80263d6f-eeda-4f73-9e6f-da982049db05",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "GET /users - should return user list",
+              "fullTitle": "Add User API Automation GET /users - should return user list",
+              "timedOut": false,
+              "duration": 572,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await fetch(`${BASE_URL}/users`, {\n  method: \"GET\",\n  headers: {\n    \"Content-Type\": \"application/json\",\n    Authorization: `Bearer ${token}`,\n  },\n});\nconst data = await response.json();\nexpect(response.status).to.equal(200);\nexpect(data).to.have.property(\"users\");",
+              "err": {},
+              "uuid": "3fda6263-975c-46bc-8bcb-4c66ae2af7bd",
+              "parentUUID": "80263d6f-eeda-4f73-9e6f-da982049db05",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "POST /add-user - positive case",
+              "fullTitle": "Add User API Automation POST /add-user - positive case",
+              "timedOut": false,
+              "duration": 402,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await fetch(`${BASE_URL}/add-user`, {\n  method: \"POST\",\n  headers: {\n    \"Content-Type\": \"application/json\",\n    Authorization: `Bearer ${token}`,\n  },\n  body: JSON.stringify({\n    username: uniqueUsername,\n    age: 11,\n  }),\n});\nconst data = await response.json();\nexpect(response.status).to.be.oneOf([200, 201]);\nexpect(data).to.have.property(\"message\");\nconsole.log(\"Positive case response:\", data);\nconsole.log(\"Positive case response status:\", response.status);",
+              "err": {},
+              "uuid": "531bb916-b7e5-4ffe-9ea9-cf7e69577820",
+              "parentUUID": "80263d6f-eeda-4f73-9e6f-da982049db05",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "POST /add-user - negative case",
+              "fullTitle": "Add User API Automation POST /add-user - negative case",
+              "timedOut": false,
+              "duration": 202,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await fetch(`${BASE_URL}/add-user`, {\n  method: \"POST\",\n  headers: {\n    \"Content-Type\": \"application/json\",\n    Authorization: `Bearer ${token}`,\n  },\n  body: JSON.stringify({\n    username: \"\",\n    age: \"abc\",\n  }),\n});\nconst data = await response.json();\nexpect(response.status).to.be.oneOf([400, 422]);\nexpect(data).to.exist;\nconsole.log(\"Negative case response:\", data);\nconsole.log(\"Negative case response status:\", response.status);",
+              "err": {},
+              "uuid": "c7321435-1081-4607-9eb2-b9d0566cffe1",
+              "parentUUID": "80263d6f-eeda-4f73-9e6f-da982049db05",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "3fda6263-975c-46bc-8bcb-4c66ae2af7bd",
+            "531bb916-b7e5-4ffe-9ea9-cf7e69577820",
+            "c7321435-1081-4607-9eb2-b9d0566cffe1"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1176,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 10000
+        },
+        {
+          "uuid": "72164b37-ca4f-4e88-90a5-73804e17a90b",
+          "title": "Delete User API Automation",
+          "fullFile": "C:\\Users\\ASUS\\Documents\\QA\\DigitalSkola\\tugas 7\\test\\deleteUser.test.js",
+          "file": "\\test\\deleteUser.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Delete User API Automation\"",
+              "fullTitle": "Delete User API Automation \"before all\" hook in \"Delete User API Automation\"",
+              "timedOut": false,
+              "duration": 604,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const loginResponse = await fetch(`${BASE_URL}/login`, {\n  method: \"POST\",\n  headers: {\n    \"Content-Type\": \"application/json\",\n  },\n  body: JSON.stringify({\n    username: \"admin\",\n    password: \"admin\",\n  }),\n});\nconst loginData = await loginResponse.json();\ntoken = loginData.token;\nconst addResponse = await fetch(`${BASE_URL}/add-user`, {\n  method: \"POST\",\n  headers: {\n    \"Content-Type\": \"application/json\",\n    Authorization: `Bearer ${token}`,\n  },\n  body: JSON.stringify({\n    username: uniqueUsername,\n    age: 11,\n  }),\n});\nconst addData = await addResponse.json();\nuserId = addData.userId;",
+              "err": {},
+              "uuid": "f6300f05-7784-480c-9b4d-632d9b4cd22e",
+              "parentUUID": "72164b37-ca4f-4e88-90a5-73804e17a90b",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "DELETE /delete-user/:id - should delete user successfully",
+              "fullTitle": "Delete User API Automation DELETE /delete-user/:id - should delete user successfully",
+              "timedOut": false,
+              "duration": 633,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await fetch(`${BASE_URL}/delete-user/${userId}`, {\n  method: \"DELETE\",\n  headers: {\n    \"Content-Type\": \"application/json\",\n    Authorization: `Bearer ${token}`,\n  },\n});\nconst data = await response.json();\nexpect(response.status).to.equal(200);\nexpect(data).to.have.property(\"message\", \"User deleted successfully!\");",
+              "err": {},
+              "uuid": "80a34967-8aaa-4b81-b583-a80bdff63ca9",
+              "parentUUID": "72164b37-ca4f-4e88-90a5-73804e17a90b",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "80a34967-8aaa-4b81-b583-a80bdff63ca9"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 633,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 10000
+        },
+        {
+          "uuid": "9813d279-3623-475f-b0f2-0167bbcd9bdf",
+          "title": "Full API Automation & Schema Test",
+          "fullFile": "C:\\Users\\ASUS\\Documents\\QA\\DigitalSkola\\tugas 7\\test\\jsonSchema.test.js",
+          "file": "\\test\\jsonSchema.test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "POST /login - Should return token & match JSON Schema",
+              "fullTitle": "Full API Automation & Schema Test POST /login - Should return token & match JSON Schema",
+              "timedOut": false,
+              "duration": 243,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await fetch(`${BASE_URL}/login`, {\n  method: \"POST\",\n  headers: {\n    \"Content-Type\": \"application/json\",\n  },\n  body: JSON.stringify({\n    username: \"admin\",\n    password: \"admin\",\n  }),\n});\nconst responseData = await response.json();\nexpect(response.status).to.equal(200);\nexpect(responseData).to.have.property(\"token\");\nconst loginSchema = {\n  type: \"object\",\n  properties: {\n    message: { type: \"string\" },\n    token: { type: \"string\" },\n  },\n  required: [\"message\", \"token\"],\n};\nconst validate = ajv.compile(loginSchema);\nconst isValid = validate(responseData);\nconst errorMessage = validate.errors\n  ? JSON.stringify(validate.errors, null, 2)\n  : null;\nexpect(isValid, errorMessage).to.be.true;\ntoken = responseData.token;",
+              "err": {},
+              "uuid": "bb8a1205-f2bb-441a-a9f5-42b74e4972ed",
+              "parentUUID": "9813d279-3623-475f-b0f2-0167bbcd9bdf",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "GET /users - Should return user list & match JSON Schema",
+              "fullTitle": "Full API Automation & Schema Test GET /users - Should return user list & match JSON Schema",
+              "timedOut": false,
+              "duration": 548,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "expect(token, \"Token is missing! Login failed first.\").to.be.a(\"string\");\nconst response = await fetch(`${BASE_URL}/users`, {\n  method: \"GET\",\n  headers: {\n    \"Content-Type\": \"application/json\",\n    Authorization: `Bearer ${token}`,\n  },\n});\nconst responseData = await response.json();\nexpect(response.status).to.equal(200);\nconst usersSchema = {\n  type: \"object\",\n  properties: {\n    status: { type: \"number\" },\n    users: {\n      type: \"array\",\n      items: {\n        type: \"object\",\n        properties: {\n          userId: { type: \"string\" },\n          username: { type: \"string\" },\n          age: { type: \"number\" },\n          protected: { type: \"boolean\" },\n        },\n        required: [\"userId\", \"username\", \"age\"],\n      },\n    },\n  },\n  required: [\"status\", \"users\"],\n};\nconst validate = ajv.compile(usersSchema);\nconst isValid = validate(responseData);\nconst errorMessage = validate.errors\n  ? JSON.stringify(validate.errors, null, 2)\n  : null;\nexpect(isValid, errorMessage).to.be.true;",
+              "err": {},
+              "uuid": "bb7ac379-2050-403e-a95c-39d17330b854",
+              "parentUUID": "9813d279-3623-475f-b0f2-0167bbcd9bdf",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "bb8a1205-f2bb-441a-a9f5-42b74e4972ed",
+            "bb7ac379-2050-403e-a95c-39d17330b854"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 791,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 10000
+        },
+        {
+          "uuid": "613ae4aa-08d7-4d52-b818-4a5f71023e65",
+          "title": "Test Login",
+          "fullFile": "C:\\Users\\ASUS\\Documents\\QA\\DigitalSkola\\tugas 7\\test\\login.test.js",
+          "file": "\\test\\login.test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Valid Login",
+              "fullTitle": "Test Login Valid Login",
+              "timedOut": false,
+              "duration": 553,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await fetch(\n    \"https://belajar-bareng.onrender.com/api/login\",\n    {\n        headers: {\n            \"Content-Type\": \"application/json\",\n        },\n        method: \"POST\",\n        body: JSON.stringify({\n            username: \"admin\",\n            password: \"admin\",\n        }),\n    }\n);\nexpect(response.status).to.equal(200);\nconst data = await response.json();\nexpect(data.message).to.eql(\"Login successful\");\ntoken = data.token;",
+              "err": {},
+              "uuid": "882a3905-2db6-4c70-baa1-6c0947a67538",
+              "parentUUID": "613ae4aa-08d7-4d52-b818-4a5f71023e65",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Get User",
+              "fullTitle": "Test Login Get User",
+              "timedOut": false,
+              "duration": 581,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await fetch(\n    \"https://belajar-bareng.onrender.com/api/users\",\n    {\n        headers: {\n            \"Content-Type\": \"application/json\",\n            authorization: `Bearer ${token}`,\n        },\n    }\n);\nexpect(response.status).to.equal(200);\nconst data = await response.json();",
+              "err": {},
+              "uuid": "ca3dfa94-414f-489c-be47-9ea1e86599e5",
+              "parentUUID": "613ae4aa-08d7-4d52-b818-4a5f71023e65",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "882a3905-2db6-4c70-baa1-6c0947a67538",
+            "ca3dfa94-414f-489c-be47-9ea1e86599e5"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1134,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.8.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "8.0.1"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.3.2"
+    }
+  }
+}
