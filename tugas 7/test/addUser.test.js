@@ -55,8 +55,8 @@ describe("Add User API Automation", function () {
 
     expect(response.status).to.be.oneOf([200, 201]);
     expect(data).to.have.property("message");
-    console.log("Positive case response:", data);
-    console.log("Positive case response status:", response.status);
+    // console.log("Positive case response:", data);
+    // console.log("Positive case response status:", response.status);
   });
 
   it("POST /add-user - negative case", async function () {
@@ -77,7 +77,7 @@ describe("Add User API Automation", function () {
     expect(response.status).to.be.oneOf([400, 422]);
     expect(data).to.exist;
 
-    console.log("Negative case response:", data);
-    console.log("Negative case response status:", response.status);
+    // console.log("Negative case response:", data);
+    // console.log("Negative case response status:", response.status);
   });
 });
