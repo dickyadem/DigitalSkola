@@ -1,0 +1,107 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-08-18T15:25:15.182Z",
+    "end": "2026-08-18T15:25:21.085Z",
+    "duration": 5903,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "062a774e-1d08-4c43-bc99-8d2bf7498ec4",
+      "title": "",
+      "fullFile": "C:\\Users\\ASUS\\Documents\\QA\\DigitalSkola\\tugas 8\\test\\addUser.js",
+      "file": "\\test\\addUser.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "36e9b7b3-f6fb-431b-9df8-60bf6bd4bbf8",
+          "title": "Belajar Bareng Login",
+          "fullFile": "C:\\Users\\ASUS\\Documents\\QA\\DigitalSkola\\tugas 8\\test\\addUser.js",
+          "file": "\\test\\addUser.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should login and add a new user",
+              "fullTitle": "Belajar Bareng Login should login and add a new user",
+              "timedOut": false,
+              "duration": 5893,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const driver = await new Builder().forBrowser(\"chrome\").build();\nconst uniqueUsername = `user${Date.now().toString().slice(-6)}`;\nconst uniqueAge = `${20 + (Date.now() % 50)}`;\ntry {\n  await driver.get(\"https://belajar-bareng.onrender.com/\");\n  const usernameInput = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"username-input\"]')),\n    10000,\n  );\n  const passwordInput = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"password-input\"]')),\n    10000,\n  );\n  const loginButton = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"login-button\"]')),\n    10000,\n  );\n  await usernameInput.clear();\n  await usernameInput.sendKeys(\"admin\");\n  await passwordInput.clear();\n  await passwordInput.sendKeys(\"admin\");\n  await loginButton.click();\n  const addButton = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"add-button\"]')),\n    10000,\n  );\n  assert.strictEqual(await addButton.isDisplayed(), true);\n  await addButton.click();\n  const addUsernameInput = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"username-input\"]')),\n    10000,\n  );\n  const ageInput = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"age-input\"]')),\n    10000,\n  );\n  const submitButton = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"submit-button\"]')),\n    10000,\n  );\n  assert.strictEqual(await submitButton.isDisplayed(), true);\n  await addUsernameInput.clear();\n  await addUsernameInput.sendKeys(uniqueUsername);\n  await ageInput.clear();\n  await ageInput.sendKeys(uniqueAge);\n  await submitButton.click();\n  await driver.wait(async () => {\n    const currentUsername = await addUsernameInput.getAttribute(\"value\");\n    const currentAge = await ageInput.getAttribute(\"value\");\n    return currentUsername === \"\" && currentAge === \"\";\n  }, 10000);\n  assert.strictEqual(\n    await addUsernameInput.getAttribute(\"value\"),\n    \"\",\n  );\n  assert.strictEqual(await ageInput.getAttribute(\"value\"), \"\");\n} finally {\n  await driver.quit();\n}",
+              "err": {},
+              "uuid": "c25f8b6b-a2e6-4401-a4d2-099224473ebd",
+              "parentUUID": "36e9b7b3-f6fb-431b-9df8-60bf6bd4bbf8",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "c25f8b6b-a2e6-4401-a4d2-099224473ebd"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 5893,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 20000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 10000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.8.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": true,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "8.0.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "mochawesome-report",
+        "reportFilename": "mochawesome",
+        "html": "true",
+        "json": "true",
+        "overwrite": "true",
+        "quiet": "true"
+      },
+      "version": "6.3.2"
+    }
+  }
+}
