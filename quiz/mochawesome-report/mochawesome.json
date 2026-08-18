@@ -1,0 +1,107 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-08-18T16:21:48.866Z",
+    "end": "2026-08-18T16:21:54.244Z",
+    "duration": 5378,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "f00ef3ad-87d3-4d01-af43-361969987667",
+      "title": "",
+      "fullFile": "C:\\Users\\ASUS\\Documents\\QA\\DigitalSkola\\quiz\\test\\shoping.js",
+      "file": "\\test\\shoping.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "713f399d-e72f-4699-8c07-28c670b5d010",
+          "title": "Belajar Bareng Shopping",
+          "fullFile": "C:\\Users\\ASUS\\Documents\\QA\\DigitalSkola\\quiz\\test\\shoping.js",
+          "file": "\\test\\shoping.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should login and shop successfully",
+              "fullTitle": "Belajar Bareng Shopping should login and shop successfully",
+              "timedOut": false,
+              "duration": 5367,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const driver = await new Builder().forBrowser(\"chrome\").build();\ntry {\n  await driver.get(\"https://belajar-bareng.onrender.com/\");\n  const usernameInput = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"username-input\"]')),\n    10000,\n  );\n  const passwordInput = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"password-input\"]')),\n    10000,\n  );\n  const loginButton = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"login-button\"]')),\n    10000,\n  );\n  await usernameInput.clear();\n  await usernameInput.sendKeys(\"admin\");\n  await passwordInput.clear();\n  await passwordInput.sendKeys(\"admin\");\n  await loginButton.click();\n  const shopButton = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"shop-button\"]')),\n    10000,\n  );\n  assert.strictEqual(await shopButton.isDisplayed(), true);\n  await shopButton.click();\n  const addToCartButton = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"add-to-cart-1\"]')),\n    10000,\n  );\n  assert.strictEqual(await addToCartButton.isDisplayed(), true);\n  await addToCartButton.click();\n  const cartButton = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"cart-button\"]')),\n    10000,\n  );\n  assert.strictEqual(await cartButton.isDisplayed(), true);\n  await cartButton.click();\n  const checkoutButton = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"checkout-button\"]')),\n    10000,\n  );\n  assert.strictEqual(await checkoutButton.isDisplayed(), true);\n  await checkoutButton.click();\n  const checkoutName = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"checkout-name\"]')),\n    10000,\n  );\n  const checkoutEmail = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"checkout-email\"]')),\n    10000,\n  );\n  const checkoutAddress = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"checkout-address\"]')),\n    10000,\n  );\n  const checkoutCaptcha = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"checkout-captcha\"]')),\n    10000,\n  );\n  const captchaQuestion = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"captcha-question\"]')),\n    10000,\n  );\n  const captchaText = await captchaQuestion.getText();\n  const captchaMatch = captchaText.match(/(\\d+)\\s*\\+\\s*(\\d+)/);\n  const captchaAnswer = captchaMatch\n    ? String(Number(captchaMatch[1]) + Number(captchaMatch[2]))\n    : \"18\";\n  const tncLink = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"tnc-link\"]')),\n    10000,\n  );\n  const tncCheckbox = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"tnc-checkbox\"]')),\n    10000,\n  );\n\n  const submitCheckout = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"submit-checkout\"]')),\n    10000,\n  );\nawait checkoutName.clear();\nawait checkoutName.sendKeys(\"ade\");\nawait checkoutEmail.clear();\nawait checkoutEmail.sendKeys(\"ade@example.com\");\nawait checkoutAddress.clear();\nawait checkoutAddress.sendKeys(\"Jl. Testing 1\");\nawait checkoutCaptcha.clear();\nawait checkoutCaptcha.sendKeys(captchaAnswer);\n\nawait tncLink.click();\n\nconst tncOkButton = await driver.wait(\n  until.elementLocated(By.css('[data-testid=\"tnc-ok-button\"]')),\n  10000,\n);\nawait driver.wait(until.elementIsVisible(tncOkButton), 10000);\n\nawait driver.executeScript(\"arguments[0].click();\", tncCheckbox);\nawait tncOkButton.click();\nawait submitCheckout.click();\n  assert.strictEqual(await submitCheckout.isDisplayed(), true);\n} finally {\n//   await driver.quit();\n}",
+              "err": {},
+              "uuid": "fa735789-4673-4b82-b97f-ae6ffc816682",
+              "parentUUID": "713f399d-e72f-4699-8c07-28c670b5d010",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "fa735789-4673-4b82-b97f-ae6ffc816682"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 5367,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 20000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 10000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.8.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": true,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "8.0.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "mochawesome-report",
+        "reportFilename": "mochawesome",
+        "html": "true",
+        "json": "true",
+        "overwrite": "true",
+        "quiet": "true"
+      },
+      "version": "6.3.2"
+    }
+  }
+}
