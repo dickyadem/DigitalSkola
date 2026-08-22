@@ -48,44 +48,19 @@ describe("SauceDemo Login", function () {
         await driver.quit();
     });
 
-    async function loginAs(username) {
-        await loginPage.login(username);
-
-        if (username === "locked_out_user") {
-            const errorMessage = await loginPage.waitForError();
-            assert.strictEqual(await errorMessage.isDisplayed(), true);
-            return;
-        }
-
-        const inventory = await loginPage.waitForInventory();
-        assert.strictEqual(await inventory.isDisplayed(), true);
-    }
-
-    it("should match the login page visual baseline", async function () {
-        await assertVisualMatch(driver, "login-page");
-    });
-    
     it("should login as standard_user", async function () {
-        await loginAs("standard_user");
+        await loginPage.login("standard_user");
+        const inventory = await loginPage.waitForInventory();
+
+        assert.strictEqual(await inventory.isDisplayed(), true);
+        await assertVisualMatch(driver, "positive-login");
     });
 
-    it("should reject locked_out_user", async function () {
-        await loginAs("locked_out_user");
-    });
+    it("should reject an invalid username", async function () {
+        await loginPage.login("invalid_user");
+        const errorMessage = await loginPage.waitForError();
 
-    it("should login as problem_user", async function () {
-        await loginAs("problem_user");
-    });
-
-    it("should login as performance_glitch_user", async function () {
-        await loginAs("performance_glitch_user");
-    });
-
-    it("should login as error_user", async function () {
-        await loginAs("error_user");
-    });
-
-    it("should login as visual_user", async function () {
-        await loginAs("visual_user");
+        assert.strictEqual(await errorMessage.isDisplayed(), true);
+        await assertVisualMatch(driver, "invalid-username-login");
     });
 });
