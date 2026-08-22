@@ -1,0 +1,181 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-08-21T15:21:51.975Z",
+    "end": "2026-08-21T15:21:58.205Z",
+    "duration": 6230,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "73513666-79cc-4d32-ab99-1566256b90ce",
+      "title": "",
+      "fullFile": "C:\\Users\\ASUS\\Documents\\QA\\DigitalSkola\\tugas 10\\test\\addUser.js",
+      "file": "\\test\\addUser.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "40d04538-838c-45bd-8226-2c8dd9d10110",
+          "title": "Belajar Bareng Login",
+          "fullFile": "C:\\Users\\ASUS\\Documents\\QA\\DigitalSkola\\tugas 10\\test\\addUser.js",
+          "file": "\\test\\addUser.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Belajar Bareng Login\"",
+              "fullTitle": "Belajar Bareng Login \"before all\" hook in \"Belajar Bareng Login\"",
+              "timedOut": false,
+              "duration": 824,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const options = new chrome.Options().addArguments(\n  \"--headless=new\",\n  \"--no-sandbox\",\n  \"--disable-dev-shm-usage\",\n    \"--disable-background-networking\",   \n\"--disable-component-update\",        \n\"--disable-sync\",                   \n\"--no-first-run\",                    \n\"--disable-default-apps\",            \n\"--disable-extensions\",              \n\"--disable-notifications\",           \n\"--log-level=3\",                     \n\"--silent\"                          \n);\ndriver = await new Builder()\n  .forBrowser(\"chrome\")\n  .setChromeOptions(options)\n  .build();",
+              "err": {},
+              "uuid": "f239c359-4372-4585-afd4-5052fdfa5c46",
+              "parentUUID": "40d04538-838c-45bd-8226-2c8dd9d10110",
+              "isHook": true,
+              "skipped": false
+            },
+            {
+              "title": "\"before each\" hook in \"Belajar Bareng Login\"",
+              "fullTitle": "Belajar Bareng Login \"before each\" hook in \"Belajar Bareng Login\"",
+              "timedOut": false,
+              "duration": 4112,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"https://belajar-bareng.onrender.com/\");\nconst usernameInput = await driver.wait(\n  until.elementLocated(By.css('[data-testid=\"username-input\"]')),\n  10000,\n);\nconst passwordInput = await driver.wait(\n  until.elementLocated(By.css('[data-testid=\"password-input\"]')),\n  10000,\n);\nconst loginButton = await driver.wait(\n  until.elementLocated(By.css('[data-testid=\"login-button\"]')),\n  10000,\n);\nawait usernameInput.sendKeys(\"admin\");\nawait passwordInput.sendKeys(\"admin\");\nawait loginButton.click();",
+              "err": {},
+              "uuid": "71dd76ab-0683-4164-93d7-e4a6acf8f526",
+              "parentUUID": "40d04538-838c-45bd-8226-2c8dd9d10110",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"Belajar Bareng Login\"",
+              "fullTitle": "Belajar Bareng Login \"after all\" hook in \"Belajar Bareng Login\"",
+              "timedOut": false,
+              "duration": 67,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.quit();",
+              "err": {},
+              "uuid": "3abd0fd0-f9df-4f19-898b-9113b2a50f6d",
+              "parentUUID": "40d04538-838c-45bd-8226-2c8dd9d10110",
+              "isHook": true,
+              "skipped": false
+            },
+            {
+              "title": "\"after each\" hook in \"Belajar Bareng Login\"",
+              "fullTitle": "Belajar Bareng Login \"after each\" hook in \"Belajar Bareng Login\"",
+              "timedOut": false,
+              "duration": 13,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.manage().deleteAllCookies();\nawait driver.executeScript(\n  \"window.localStorage.clear(); window.sessionStorage.clear();\",\n);",
+              "err": {},
+              "uuid": "ed9743e9-7b15-409e-94ac-51f52d140173",
+              "parentUUID": "40d04538-838c-45bd-8226-2c8dd9d10110",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "should login and add a new user",
+              "fullTitle": "Belajar Bareng Login should login and add a new user",
+              "timedOut": false,
+              "duration": 1205,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const uniqueUsername = `user${Date.now().toString().slice(-6)}`;\nconst uniqueAge = `${20 + (Date.now() % 50)}`;\nconst addButton = await driver.wait(\n  until.elementLocated(By.css('[data-testid=\"add-button\"]')),\n  10000,\n);\nassert.strictEqual(await addButton.isDisplayed(), true);\nawait addButton.click();\nconst addUsernameInput = await driver.wait(\n  until.elementLocated(By.css('[data-testid=\"username-input\"]')),\n  10000,\n);\nconst ageInput = await driver.wait(\n  until.elementLocated(By.css('[data-testid=\"age-input\"]')),\n  10000,\n);\nconst submitButton = await driver.wait(\n  until.elementLocated(By.css('[data-testid=\"submit-button\"]')),\n  10000,\n);\nassert.strictEqual(await submitButton.isDisplayed(), true);\nawait addUsernameInput.clear();\nawait addUsernameInput.sendKeys(uniqueUsername);\nawait ageInput.clear();\nawait ageInput.sendKeys(uniqueAge);\nawait submitButton.click();\nawait driver.wait(async () => {\n  const currentUsername = await addUsernameInput.getAttribute(\"value\");\n  const currentAge = await ageInput.getAttribute(\"value\");\n  return currentUsername === \"\" && currentAge === \"\";\n}, 10000);\nassert.strictEqual(await addUsernameInput.getAttribute(\"value\"), \"\");\nassert.strictEqual(await ageInput.getAttribute(\"value\"), \"\");",
+              "err": {},
+              "uuid": "41c4d52e-517c-4555-bf8f-1373d3493a4a",
+              "parentUUID": "40d04538-838c-45bd-8226-2c8dd9d10110",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "41c4d52e-517c-4555-bf8f-1373d3493a4a"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1205,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 20000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 10000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.8.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": true,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "8.0.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "mochawesome-report",
+        "reportFilename": "mochawesome",
+        "html": "true",
+        "json": "true",
+        "overwrite": "true",
+        "quiet": "true"
+      },
+      "version": "6.3.2"
+    }
+  }
+}
