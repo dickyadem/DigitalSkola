@@ -4,6 +4,41 @@ const { Builder, By, until } = require("selenium-webdriver");
 describe("Belajar Bareng Login", function () {
   this.timeout(20000);
 
+  it("should login successfully", async function () {
+    const driver = await new Builder().forBrowser("chrome").build();
+
+    try {
+      await driver.get("https://belajar-bareng.onrender.com/");
+
+      const usernameInput = await driver.wait(
+        until.elementLocated(By.css('[data-testid="username-input"]')),
+        10000,
+      );
+      const passwordInput = await driver.wait(
+        until.elementLocated(By.css('[data-testid="password-input"]')),
+        10000,
+      );
+      const loginButton = await driver.wait(
+        until.elementLocated(By.css('[data-testid="login-button"]')),
+        10000,
+      );
+
+      await usernameInput.clear();
+      await usernameInput.sendKeys("admin");
+      await passwordInput.clear();
+      await passwordInput.sendKeys("admin");
+      await loginButton.click();
+
+      const addButton = await driver.wait(
+        until.elementLocated(By.css('[data-testid="add-button"]')),
+        10000,
+      );
+      assert.strictEqual(await addButton.isDisplayed(), true);
+    } finally {
+      await driver.quit();
+    }
+  });
+
   it("should login and add a new user", async function () {
     const driver = await new Builder().forBrowser("chrome").build();
     const uniqueUsername = `user${Date.now().toString().slice(-6)}`;
