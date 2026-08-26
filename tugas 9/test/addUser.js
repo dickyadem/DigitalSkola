@@ -45,6 +45,8 @@ describe("Belajar Bareng Login", function () {
       10000,
     );
 
+    await usernameInput.clear();
+    await passwordInput.clear();
     await usernameInput.sendKeys("admin");
     await passwordInput.sendKeys("admin");
     await loginButton.click();
@@ -58,7 +60,9 @@ describe("Belajar Bareng Login", function () {
   });
 
   after(async function () {
-    await driver.quit();
+    if (driver) {
+      await driver.quit();
+    }
   });
 
   it("should login and add a new user", async function () {
@@ -101,5 +105,14 @@ describe("Belajar Bareng Login", function () {
 
     assert.strictEqual(await addUsernameInput.getAttribute("value"), "");
     assert.strictEqual(await ageInput.getAttribute("value"), "");
+  });
+
+  it("should login successfully", async function () {
+    const addButton = await driver.wait(
+      until.elementLocated(By.css('[data-testid="add-button"]')),
+      10000,
+    );
+
+    assert.strictEqual(await addButton.isDisplayed(), true);
   });
 });
