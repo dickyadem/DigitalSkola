@@ -14,6 +14,8 @@ Repository ini berisi kumpulan latihan dan tugas QA Automation DigitalSkola, mul
 - [Task 8: UI Automation Belajar Bareng](#task-8-ui-automation-belajar-bareng)
 - [Task 9: UI Automation dengan Setup Bersama](#task-9-ui-automation-dengan-setup-bersama)
 - [Task 10: Page Object dan Visual Regression](#task-10-page-object-dan-visual-regression)
+- [Task 13: Mobile App Opening Test](#task-13-mobile-app-opening-test)
+- [Task 14: Mobile Login Automation dengan Appium WDIO](#task-14-mobile-login-automation-dengan-appium-wdio)
 - [Quiz: Shopping Flow](#quiz-shopping-flow)
 
 ## Persiapan
@@ -44,6 +46,8 @@ Perintah `npm run report` tersedia di folder yang menggunakan Mochawesome untuk 
 | Task 8 | UI automation alur login dan belanja | Selenium WebDriver |
 | Task 9 | UI automation dengan lifecycle driver | Selenium WebDriver |
 | Task 10 | Page Object Model dan visual regression | Selenium, `pixelmatch`, `pngjs` |
+| Task 13 | Smoke test aplikasi mobile dan koneksi Appium | `wdio.conf.js`, `task/open.js` |
+| Task 14 | Login automation aplikasi mobile dengan Appium dan WDIO | `task/specs`, `task/pages`, `allure-results` |
 | Quiz | UI automation alur shopping sampai checkout | Selenium WebDriver |
 
 ## Task 3: Perulangan JavaScript
@@ -227,6 +231,77 @@ npm test
 ```
 
 Report tersedia di [mochawesome-report/mochawesome.html](tugas%2010/mochawesome-report/mochawesome.html).
+
+## Task 13: Mobile App Opening Test
+
+**Tujuan:** mengecek koneksi Appium dengan emulator Android dan memastikan aplikasi mobile dapat dibuka sebelum test login dilakukan.
+
+Folder [tugas 13](tugas%2013) berisi konfigurasi WebdriverIO untuk aplikasi Android dengan capability:
+
+- Platform: `Android`
+- Automation engine: `UiAutomator2`
+- Device: `emulator-5554`
+- Package aplikasi: `com.example.belajar_bareng`
+- Activity utama: `com.example.belajar_bareng/.MainActivity`
+
+File [task/open.js](tugas%2013/task/open.js) merupakan smoke test sederhana yang:
+
+1. membuka aplikasi Android,
+2. menunggu beberapa detik,
+3. mencetak log `open test successful`,
+4. menutup aplikasi setelah test selesai.
+
+**Cara menjalankan:**
+
+```bash
+cd "tugas 13"
+npm install
+npm test
+```
+
+Hasil test menggunakan reporter Allure disimpan pada folder [allure-results](tugas%2013/allure-results/).
+
+## Task 14: Mobile Login Automation dengan Appium WDIO
+
+**Tujuan:** mengotomatisasi proses login pada aplikasi mobile Sauce Labs My Demo App Android dengan WebdriverIO, Appium, serta Page Object Model.
+
+Folder [tugas 14](tugas%2014) memiliki struktur proyek mobile automation yang terorganisir:
+
+- [task/locators](tugas%2014/task/locators/) berisi selector elemen login.
+- [task/pages](tugas%2014/task/pages/) berisi class page object untuk login.
+- [task/specs](tugas%2014/task/specs/) berisi skenario test.
+- [task/utils](tugas%2014/task/utils/) berisi helper umum seperti wait, click, input, dan scroll.
+- [wdio.conf.js](tugas%2014/wdio.conf.js) mengatur koneksi Appium dan capability Android.
+
+Skenario utama yang diuji pada [task/specs](tugas%2014/task/specs/) adalah:
+
+1. membuka menu aplikasi,
+2. scroll ke form login,
+3. mengisi email dan password,
+4. menekan tombol login,
+5. menutup aplikasi setelah test selesai.
+
+Kredensial yang dipakai pada test saat ini:
+
+- Email: `bod@example.com`
+- Password: `10203040`
+
+**Cara menjalankan:**
+
+```bash
+cd "tugas 14"
+npm install
+npm test
+```
+
+Untuk membuka report Allure:
+
+```bash
+cd "tugas 14"
+npm run allure
+```
+
+Report hasil test dihasilkan pada folder [allure-results](tugas%2014/allure-results/) dan [allure-report](tugas%2014/allure-report/). Dokumentasi detailnya tersedia di [test/README.md](tugas%2014/test/README.md).
 
 ## Quiz: Shopping Flow
 
