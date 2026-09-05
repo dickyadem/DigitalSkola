@@ -57,6 +57,10 @@ npm test
 
 Konfigurasi WebdriverIO membaca seluruh spec dari `test/specs/**/*.js` melalui file `wdio.conf.js`.
 
+## Video Hasil Automation
+
+[Tonton video hasil automation di Google Drive](https://drive.google.com/file/d/1Fcu7XVXc5IhagYEzQROonHK_NOG0PJvR/view?usp=drive_link).
+
 ## Page Object Model
 
 `page/login.page.js` memisahkan aksi halaman dari file spec. Class `LoginPage` menyediakan method:
