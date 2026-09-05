@@ -303,6 +303,8 @@ npm run allure
 
 Report hasil test dihasilkan pada folder [allure-results](tugas%2014/allure-results/) dan [allure-report](tugas%2014/allure-report/). Dokumentasi detailnya tersedia di [test/README.md](tugas%2014/test/README.md).
 
+Video hasil automation dapat ditonton di [Google Drive](https://drive.google.com/file/d/1Fcu7XVXc5IhagYEzQROonHK_NOG0PJvR/view?usp=drive_link).
+
 ## Quiz: Shopping Flow
 
 File [shoping.js](quiz/test/shoping.js) mengotomatisasi alur belanja end-to-end pada aplikasi Belajar Bareng:
