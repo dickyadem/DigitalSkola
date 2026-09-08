@@ -32,10 +32,7 @@ class AuthPage {
     }
 
     async submitRegister() {
-        if (await browser.isKeyboardShown()) {
-            await browser.back();
-            await browser.pause(500);
-        }
+        await actionUtil.hideKeyboard();
         await actionUtil.waitAndClick(this.registerSubmitBtn);
     }
 
@@ -48,10 +45,7 @@ class AuthPage {
     }
 
     async submitLogin() {
-        if (await browser.isKeyboardShown()) {
-            await browser.back();
-            await browser.pause(500);
-        }
+        await actionUtil.hideKeyboard();
         await actionUtil.waitAndClick(this.loginSubmitBtn);
     }
 }

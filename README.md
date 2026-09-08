@@ -303,7 +303,11 @@ npm run allure
 
 Report hasil test dihasilkan pada folder [allure-results](tugas%2014/allure-results/) dan [allure-report](tugas%2014/allure-report/). Dokumentasi detailnya tersedia di [test/README.md](tugas%2014/test/README.md).
 
-Video hasil automation dapat ditonton di [Google Drive](https://drive.google.com/file/d/1Fcu7XVXc5IhagYEzQROonHK_NOG0PJvR/view?usp=drive_link).
+## Automation Testing Demo
+
+![Automation Testing Demo](./AppiumDemo.gif)
+
+Full demo: https://youtu.be/-cWh0Rutmbw
 
 ## Quiz: Shopping Flow
 
